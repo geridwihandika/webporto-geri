@@ -1,0 +1,203 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f2f3f5;
+  --foreground: #09090b;
+  --muted: #e7e8ec;
+  --muted-foreground: #5c5d67;
+  --border: #dcdde2;
+  --card: #ffffff;
+  --card-foreground: #09090b;
+  --accent: #18181b;
+  --accent-foreground: #fafafa;
+}
+
+.dark {
+  --background: #09090b;
+  --foreground: #fafafa;
+  --muted: #18181b;
+  --muted-foreground: #a1a1aa;
+  --border: #27272a;
+  --card: #121215;
+  --card-foreground: #fafafa;
+  --accent: #fafafa;
+  --accent-foreground: #09090b;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body,
+main {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  /* Architectural drafting grid lines */
+  background-image: 
+    linear-gradient(to right, rgba(9, 9, 11, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(9, 9, 11, 0.055) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: center top;
+}
+
+.dark body,
+.dark main {
+  background-image: 
+    linear-gradient(to right, rgba(250, 250, 250, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(250, 250, 250, 0.045) 1px, transparent 1px);
+}
+
+/* Custom Design System Tokens from mediocree.works */
+.container-portfolio {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 80rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container-portfolio {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-portfolio {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+.section-spacing {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+  .section-spacing {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1.5rem;
+}
+
+.section-number {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: var(--muted-foreground);
+  font-family: var(--font-mono), monospace;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted-foreground);
+  font-family: var(--font-mono), monospace;
+}
+
+.category-tag {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted-foreground);
+  font-family: var(--font-mono), monospace;
+}
+
+.btn-outline-portfolio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--foreground);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: var(--font-mono), monospace;
+  background-color: transparent;
+  color: var(--foreground);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-outline-portfolio:hover {
+  background-color: var(--foreground);
+  color: var(--background);
+}
+
+.project-image {
+  aspect-ratio: 4/3;
+  width: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-image:hover,
+.group:hover .project-image {
+  filter: grayscale(0%);
+  transform: scale(1.02);
+}
+
+.exploration-item {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  background-color: var(--muted);
+}
+
+.exploration-item img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.exploration-item:hover img,
+.group:hover .exploration-item img {
+  filter: grayscale(0%);
+  transform: scale(1.06);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
